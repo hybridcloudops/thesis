@@ -1,0 +1,28 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{ l  l  l }
+            \toprule
+            \textbf{Provider} & \textbf{Name} & \textbf{Cloud} \\ \midrule
+            Microsoft & \acrfull{aks} & single \\ \midrule
+            Google & \acrfull{gke} & single \\ \midrule
+            Amazon & \acrfull{eks} & single \\ \midrule
+            IBM & IBM Cloud \gls{kubernetes} Service & single \\ \midrule
+            Oracle & Container Engine for \gls{kubernetes} & single \\ \midrule
+            DigitalOcean & DigitalOcean \gls{kubernetes} & single \\ \midrule
+            Huawei & Cloud Container Engine (CCE) & single \\ \midrule
+            Tencent & Tencent \gls{kubernetes} Engine (TKE) & single \\ \midrule
+            RedHat & Red Hat \gls{openshift} Dedicated & multi \\ \midrule
+            Containership & Containership \gls{kubernetes} Engine (CKE) & multi \\
+            \bottomrule
+        \end{tabular}
+        \captionsetup{justification=centering}
+        \caption{
+            Incomplete list of \gls{kubernetes} service hostings for single- or \gls{multi_cloud} available from Microsoft, Google, Amazon, IBM, Oracle, DigitalOcean, Huawei, Tencent, RedHat and Containership.\cite{k8s_offering_aks,k8s_offering_gke,k8s_offering_eks,k8s_offering_ibm,k8s_offering_oracle,k8s_offering_digioc,k8s_offering_huawei,k8s_offering_tencent,k8s_offering_redhat,k8s_offering_cke}
+        }
+        \label{tab:k8s_offerings}
+    \end{table}
+\end{document}
+

@@ -1,0 +1,45 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+    The reference \gls{hybrid_cloud} environment is composed of three parts.
+    The \gls{public_cloud} part, running in a selected region on commodity hardware of a \gls{public_cloud} provider, the \gls{private_cloud} part and the legacy stack, both of which are running on my personal device (Fig.~\ref{fig:env_simple}).
+
+    \subfile{impl-fig-env-setup}
+
+    \subsubsection{Azure Kubernetes Service}
+
+    I am focusing on \gls{microsoft_cloud} as the \gls{public_cloud} provider given its relative popularity in Switzerland and many well-known Swiss companies using it, including UBS, Raiffeisen, SwissRe and Swisscom.\cite{microsoft_exand_swiss,microsoft_ubs,microsoft_azure_case}
+
+    \gls{terraform} offers an \glsdisp{microsoft_cloud}{Azure} provider, which is used to provide a \gls{kubernetes} cluster via \acrlong{aks}.
+    It allows for automated provisioning and destruction of the complete environment.
+    The cluster is managed remotely through \gls{kubectl}.
+
+    \subsubsection{Minikube on KVM}
+
+    For my \gls{private_cloud} execution environment, I am using a local \gls{minikube} cluster.
+    \Gls{minikube} is designed to run \gls{kubernetes} locally.
+    It runs a single-node cluster on top of a virtual machine provisioned through a virtualization driver, in my case \acrfull{kvm}.
+    Most \gls{kubernetes} features are available with \gls{minikube} and it can be used with \gls{docker} as the container runtime.
+    Cluster interaction is supported using \gls{kubectl}.
+    Therefore, the control mechanism is the same as for the \gls{public_cloud} execution environment.\cite{k8s_dist_minikube}
+
+    \subsubsection{Physical linux host}
+
+    My legacy environment is a single, physical linux host.
+    Legacy artifacts are not shipped as containers and therefore require the runtime to be available on the machine.
+    The artifacts are made available via a web server that serves as an artifact repository.
+    To make it possible to deploy legacy components using my legacy manifests, I created a deployment daemon named \gls{legacyctld}, and a command line interface, \gls{legacyctl}.
+
+    \textbf{\gls{legacyctld}} is a server component that manages legacy resources.
+    It takes care of applying and deleting \gls{kubernetes} manifests the way \gls{kubectl} does it.
+    The server keeps track of all processes that have been started on that instance.
+    It offers a \acrshort{rest} \acrshort{api} for process management (Table.~\ref{tab:legacyctld_api}).
+
+    \subfile{impl-tab-legacyctld-api}
+
+    \textbf{\gls{legacyctl}} is a command line interface and \acrshort{http} client of \gls{legacyctld} that handles deployments via \gls{kubernetes} manifests using the legacy extensions.
+    It is based on the \acrshort{api} definition of \gls{kubectl}.
+
+\end{document}
+

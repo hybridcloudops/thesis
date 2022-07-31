@@ -1,0 +1,56 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+    % requires to be H aligned for references to work properly
+    \begin{algorithm}[H]
+        % for algorithms keep label and caption on the top for referencing to work properly
+        \label{alg:deploy_policies}
+        \caption{
+            Deployment to execution environments using tags and policies.
+        }
+        \SetKwProg{With}{with}{ as}{end}
+        \SetKwProg{Strategy}{strategy}{:}{end}
+        \KwData{\acrshort{k8s} object repository, incl. policies}
+        \KwResult{deployment event status}
+        init\;
+        \ForEach{\acrshort{k8s} objects in repository}{
+            get labels from object\;
+            get policy for object\;
+            load strategy for policy from [strategies]\;
+            apply labels to strategy\;
+        }
+        \With{strategies}{
+            \Strategy{none(labels)}{
+                delete from private \acrshort{k8s} cluster\;
+                delete from public \acrshort{k8s} cluster\;
+                delete from legacy stack\;
+            }
+            \Strategy{public(labels)}{
+                \uIf{public label}{
+                    apply to public \acrshort{k8s} cluster\;
+                }\Else{
+                    delete from public \acrshort{k8s} cluster\;
+                }
+                delete from private \acrshort{k8s} cluster\;
+                delete from legacy stack\;
+            }
+            \Strategy{publicAndPrivate(labels)}{
+                \uIf{public label}{
+                    apply to public \acrshort{k8s} cluster\;
+                }\Else{
+                    delete from public \acrshort{k8s} cluster\;
+                }
+                \uIf{private label}{
+                    apply to private \acrshort{k8s} cluster\;
+                }\Else{
+                    delete from private \acrshort{k8s} cluster\;
+                }
+                delete from legacy stack\;
+            }
+            \tcp{other strategies}
+            \ldots\;
+        }
+        % add newline before caption
+        ~\\
+    \end{algorithm}
+\end{document}

@@ -1,0 +1,29 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{ l  l  l }
+            \toprule
+            \textbf{Provider} & \textbf{Name} & \textbf{Deployment} \\ \midrule
+            Cisco & Cisco Container Platform (CCP) & hybrid \\ \midrule
+            VMWare & Tanzu \gls{kubernetes} Grid & hybrid \\ \midrule
+            Wind & Wind River Cloud Platform & edge \\ \midrule
+            Canonical & Charmed \gls{kubernetes} & multi \\ \midrule
+            Canonical & MicroK8s & local, edge \\ \midrule
+            \gls{kubernetes} & Minikube & local \\ \midrule
+            RedHat & OKD & hybrid \\ \midrule
+            RedHat & Minishift & local \\ \midrule
+            Rancher & K3S & edge \\ \midrule
+            openSUSE & Kubic & private \\ \midrule
+            Scality & MetalK8s & private \\
+            \bottomrule
+        \end{tabular}
+        \captionsetup{justification=centering}
+        \caption{
+            Incomplete list of \gls{kubernetes} distributions aimed at \glsdisp{edge_cloud}{edge}, \glsdisp{multi_cloud}{multi}, \glsdisp{hybrid_cloud}{hybrid} and \gls{private_cloud} deployments and for local development, testing and educational purposes.\cite{k8s_dist_cisco_ccp,k8s_dist_tanzu,k8s_dist_wind_rcp,k8s_dist_charmed,k8s_dist_micro,k8s_dist_minikube,k8s_dist_okd,k8s_dist_minishift,k8s_dist_k3s,k8s_dist_kubic,k8s_dist_metalk8s}
+        }
+        \label{tab:k8s_distros}
+    \end{table}
+\end{document}
+

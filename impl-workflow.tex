@@ -1,0 +1,22 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+    The \gls{gitops} workflow consists of the environment metadata repository storing all the \gls{kubernetes} manifests and a centralized \gls{deployer} component.
+    Once a change is made to the repository, the deployment process is triggered via a push-mechanism and the workflow applies the current desired state to the execution environments (Fig.~\ref{fig:impl_deployer}).
+
+    \subfile{impl-fig-commit-flow}
+
+    \subsubsection{Centralized deployer}
+
+    The centralized \gls{deployer} has control of all execution environments through \gls{kubectl}, by switching between the \glsdisp{private_cloud}{private} and \gls{public_cloud} context, and through \gls{legacyctl}.
+    It offers a \acrshort{rest} \acrshort{api} for deployment invocations (Table~\ref{tab:deployer_api}).
+
+    \subfile{impl-tab-deployer-api}
+
+    Once the deployment is triggered, the policies for all \gls{cloud} groups are loaded from a \gls{kubernetes} cluster.
+    Based on the configured policies and the tags, all qualified resources are applied for the \gls{cloud} groups electively.
+    The process takes care of possible changes in setup and redeploys or removes components accordingly.
+
+\end{document}
+

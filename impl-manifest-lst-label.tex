@@ -1,0 +1,21 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+    \begin{figure}[h]
+        \begin{verbatim}
+            metadata:
+                name: example-service
+                labels:
+                    cloud-env-minikube: supported
+                    cloud-env-bsc-aks: supported
+                    cloud-legacy: unsupported
+                    cloud-group: examples
+        \end{verbatim}
+        \captionsetup{justification=centering}
+        \caption{
+            Model of \gls{cloud} labels applied on \gls{kubernetes} manifest metadata.
+        }
+        \label{lst:meta_labels}
+    \end{figure}
+\end{document}
+

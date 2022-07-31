@@ -1,0 +1,40 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+    % abandoned
+    % draft for policy extension with lociation
+
+    % requires to be H aligned for references to work properly
+    \begin{algorithm}[H]
+        % for algorithms keep label and caption on the top for referencing to work properly
+        \label{alg:multi_policies}
+        \caption{
+            Deployment to execution environments using tags and policies.
+        }
+        \SetKwProg{With}{with}{ as}{end}
+        \SetKwProg{Policy}{policy}{:}{end}
+        \KwData{\acrshort{k8s} object repository, incl policies}
+        \KwResult{deployment event status}
+        init\;
+        \ForEach{\acrshort{k8s} objects in repository}{
+            get labels from object\;
+            get policy for object\;
+            load strategy for policy from [strategies]\;
+            apply labels to strategy\;
+
+            policies.reduce(eval p1 \&\& eval p2)\;
+        }
+        \With{policies}{
+            \Policy{CloudPolicy}{
+                bsc-aks-*\;
+            }
+            \Policy{LocationPolicy}{
+                bsc-aks-zurich\;
+                bsc-aks-geneva\;
+            }
+        }
+        % add newline before caption
+        ~\\
+    \end{algorithm}
+\end{document}

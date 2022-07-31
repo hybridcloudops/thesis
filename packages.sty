@@ -1,0 +1,83 @@
+\ProvidesPackage{packages}
+
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman,english]{babel}
+
+% colors hyperrefs, move import to change what is colored
+\usepackage{hyperref}
+\hypersetup{
+%    pdfpagemode=FullScreen, % remove for final version
+    breaklinks=true,
+    colorlinks=true, % set to 'true' for final version to switch from borders to text coloring with colors from below
+    citecolor=[rgb]{0.2,0.8,0.2},
+    linkcolor=[rgb]{0.1,0.1,0.5},
+    urlcolor=magenta,
+%    citecolor=black,
+%    linkcolor=black,
+%    urlcolor=black,
+    pdftitle={HybridCloudOps Models for Business Application Development},
+    pdfauthor={Simon Anliker},
+    pdfsubject={BSc thesis},
+    pdfkeywords={cloud,devops,hybridcloud,enterprise},
+    bookmarks=true
+}
+
+\usepackage{csquotes}
+
+\usepackage{graphicx}
+\graphicspath{ {./} }
+\usepackage{subfig}
+
+% Figure caption style
+\usepackage[font={color=darkgray,it},figurename=Fig.,labelfont={bf}]{caption}
+
+% Enabled loading of pdf pages
+\usepackage{pdfpages}
+
+% Adds lof and lot to the toc
+\usepackage[nottoc]{tocbibind}
+
+% Gloassary and acronyms
+\usepackage[acronym,toc]{glossaries}
+
+% References
+\usepackage[style=ieee, backend=biber, sorting=none]{biblatex}
+% make sure ref links do not exceed the text area:
+\usepackage{url}
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
+
+% math refs
+\usepackage{amsmath}
+
+% pseudocode
+\usepackage[dotocloa]{algorithm2e}
+% change caption style to match figures and tables
+\renewcommand\AlCapFnt{\itshape\centering\color{darkgray}}
+\renewcommand\AlCapNameFnt{\AlCapFnt}
+
+% for the [H] option
+\usepackage{float}
+
+% table formatting
+\usepackage{amsfonts}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{multirow}
+
+% define headers and footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+%\rhead{Section \thesection}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\usepackage{microtype}
+
+%% Packages for modularity
+% Best loaded last in the preamble
+\usepackage{subfiles}

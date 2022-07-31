@@ -1,0 +1,25 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+    The staging environment is the place for user acceptance testing.
+    Some companies promote the practice of doing this testing directly in production systems.
+    In regulated environments, this might not be feasible and large enterprises usually do not want to take the risk that comes with it, even if companies like Netflix demonstrate how it can even increase production stability, if done correctly.
+    A more common process is to require sign-off from application managers and business representatives before promoting a change to production.
+    Change approval processes involving change approval boards have been shown to negatively impact speed and stability\cite{state_of_devops_19}.
+    Therefore, the approval process should be very lightweight, allowing releases by the push of a button.
+    The current staging version should always be available for sign-off.
+    If sign-off has been given by the relevant parties, the change is taken to production (Fig.~\ref{fig:git_branching_prod}).
+
+    \subfile{outlook-fig-git-branch-prod}
+
+    Instead of updating the production branch directly, a \glsdisp{canary_depl}{canary} version is used which also runs as part of the production system but only receives a minority of the traffic.
+    The effective scale of the \gls{canary_depl} might be driven by another, dedicated deployment policy.
+    If the \gls{canary_depl} was deemed successful, through manual verification or \gls{auto_canary_anl}, the change is applied to the production branch eventually.
+    Therefore, the environment metadata repository reflects the desired and actual state of the environment at any point in time.
+    In addition, it provides full traceability and an auditable change history.
+    All branch transitions are handled by the deployment workflow.
+    Applying changes to those branches manually is strictly prohibited.
+
+\end{document}
+

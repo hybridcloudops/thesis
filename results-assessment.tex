@@ -1,0 +1,86 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+    An assessment with an n=7 expert group has been conducted.
+    First, the experience level and background of the expert group is evaluated, followed by an assessment of the applicability of the concepts based on feedback from the group.
+
+    \subsubsection{Experience level of expert group}
+
+    The expert group consists of \acrshort{it} professionals from the finance, telecommunication, software and \gls{cloud} services industry and work as software, platform and \gls{devops} engineer, \gls{cloud} architect and middleware specialist (Fig.~\ref{fig:res_group_bg}a-b).
+
+    For \gls{cloud} environments, \gls{public_cloud} is the predominant area of expertise, while over 50\% have no explicit experience working on or operating a \gls{hybrid_cloud} (Fig.~\ref{fig:res_group_skill}a).
+    Skill levels are high on non-\gls{cloud_native}, legacy applications and for containers, whereas skills on \gls{kubernetes} are still developed (Fig.~\ref{fig:res_group_skill}b).
+    The years of experience working in \acrshort{it} ranges from 8 to 25 years (Fig.~\ref{fig:res_group_skill}c).
+
+    The most applied \gls{cloud} deployment models are \glsdisp{public_cloud}{public} and \gls{private_cloud}, with \glsdisp{hybrid_cloud}{hybrid}- and \gls{multi_cloud} only making up a small percentage.
+    In terms of \gls{cloud} providers used, \gls{microsoft_cloud}, \acrlong{aws} and \acrlong{gcp} are taking the lead, followed by Swisscom, IBM and Hetzner (Fig.~\ref{fig:res_group_bg}c-d).
+
+    Considering tooling for management and deployment, legacy applications are mainly handled with company-internal tools in combination with \gls{puppet}, \gls{ansible} and \gls{terraform} for configuration and infrastructure management.
+    For \gls{cloud_native} applications, more open, standardised software and less custom tooling is used with \gls{kubernetes}-based solutions making up more than 50\% of the share, predominantly in combination with \gls{terraform} for infrastructure management (Fig.~\ref{fig:res_group_bg}e-f).
+
+    \subfile{results-fig-group-bg}
+
+    \subfile{results-fig-group-skill}
+
+    % print group figured before the applicability part
+    \clearpage
+
+    \subsubsection{Applicability of legacy integration}
+
+    The applicability of integrating legacy applications into the deployment workflow using \gls{kubernetes} manifests is evaluated based on usage consideration and \acrlongpl{kpi}.
+    Usage consideration mainly received a neutral or strong positive rating.
+    For \acrlongpl{kpi}, both software development and incident management are mostly estimated to become more efficient, however, a minority thinks that it will have a strong negative impact on incident management cost and efficiency (Fig.~\ref{fig:res_assess_legacy}a-d).
+
+    \subfile{results-fig-assess-legacy}
+
+    There is a positive correlation between a lower experience level with \gls{kubernetes} and \gls{cloud} environments and a higher overall rating score.
+    This mainly reflects the part of the group that is very experienced with legacy applications in a large enterprise.
+
+    Further feedback that supplements and manifests the ratings in Fig.~\ref{fig:res_assess_legacy} is aggregated and presented in consolidated form.
+    The main points for legacy integration from the rating justification and additional input are:
+    \begin{itemize}
+        \setlength\itemsep{0em}
+        \item \textquote{Work with legacy applications is not in scope}
+        \item \textquote{Redesign of legacy applications should be favoured}
+        \item \textquote{Amount of tooling for deployment should be kept to a minimum}
+        \item \textquote{Avoid custom tooling as maintenance causes additional overhead}
+        \item \textquote{Consistent process will simplify support}
+        \item \textquote{Consistent process will help migrating off the legacy stack}
+        \item \textquote{Integration would be needed as migrating all processes to the \gls{cloud} is not possible}
+        \item \textquote{Integration would help to ease and speed up \acrshort{ci}/\acrshort{cd}}
+        \item \textquote{Integration would decrease lead time and cost}
+        \item \textquote{Hard to convince senior management to adopt a new process for a legacy stack}
+    \end{itemize}
+
+    \subsubsection{Applicability of hybrid cloud policies}
+
+    Separately from legacy integration, applicability of \gls{hybrid_cloud} deployments using tags and policies is also evaluated on the same basis of usage consideration and \acrlongpl{kpi}.
+    There is a strong positive usage consideration and performance in terms of cost and efficiency has been mostly estimated to improve, strongly improve or at least stay the same (Fig.~\ref{fig:res_asses_policy}a-d).
+
+    \subfile{results-fig-assess-policy}
+
+    Further feedback that supplements and manifests the ratings in Fig.~\ref{fig:res_asses_policy} is aggregated and presented in consolidated form.
+    The main points for \gls{hybrid_cloud} deployments from the rating justification and additional input are:
+    \begin{itemize}
+        \setlength\itemsep{0em}
+        \item \textquote{Simple way to manage multiple \gls{cloud} environments}
+        \item \textquote{Current \gls{cloud} policy can be easily accessed using \gls{git}}
+        \item \textquote{Helps to avoid vendor lock-in}
+        \item \textquote{Brings consistency across environments}
+        \item \textquote{Reduces overhead of the time to deploy}
+        \item \textquote{Easy correlation of deployments and outages, if related}
+        \item \textquote{Helps to meet high availability / business continuity planning requirements}
+        \item \textquote{Might not match the real-world complexity of deployments}
+    \end{itemize}
+
+    On more general terms, looking at the overall solution, additional input has been provided as what should be considered for future work to improve applicability:
+    \begin{itemize}
+        \setlength\itemsep{0em}
+        \item \textquote{Integrate with an approval process for release to production systems}
+        \item \textquote{Use and extend existing \gls{gitops} workflow tools}
+        \item \textquote{Use \gls{kustomize} for \gls{kubernetes} configuration management}
+    \end{itemize}
+
+\end{document}
+

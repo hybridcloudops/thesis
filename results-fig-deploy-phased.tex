@@ -1,0 +1,20 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+    \begin{figure}[t]
+        \centering
+        \includegraphics[width=.4\linewidth]{img/res-deploy-label.png}
+        \subfloat[]{{
+            \includegraphics[width=.5\linewidth]{img/res-deploy-phased1_v2.png}
+        }}
+        \subfloat[]{{
+            \includegraphics[width=.5\linewidth]{img/res-deploy-phased2_v2.png}
+        }}
+        \captionsetup{justification=centering}
+        \caption{
+            Deployment of \gls{cloud} policy changes using a phased method, migrating from \glsdisp{public_cloud}{public} to \gls{private_cloud} (a) and back (b).
+        }
+        \label{fig:res_deploy_phased}
+    \end{figure}
+\end{document}
+

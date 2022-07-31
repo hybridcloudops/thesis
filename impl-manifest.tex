@@ -1,0 +1,69 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+    This section shows the actual models and implementation of manifest extensions based on the metamodels of the concepts.
+
+    \subsubsection{Annotations for legacy deployments}
+
+    For legacy manifests I defined a set of annotations that are required by \gls{legacyctld} to fetch artifacts and execute deployments (Fig.~\ref{lst:template_meta}).
+
+    \subfile{impl-manifest-lst-annotation}
+
+    \textbf{legacy/v} specifies the version of the artifact being deployed.
+    The version accepts any number and can be independent of the image version.
+    Version changes are used to indicate that the artifact needs to be redeployed.
+
+    \textbf{legacy/type} specifies the type of the artifact being deployed.
+    Currently the only supported type is \verb|zip|.
+    It expects the image to be a \verb|zip| assembly that comes with the execution instructions for the process in form of a run script.
+
+    \textbf{legacy/host} specifies the endpoint of the \gls{legacyctld} process that should take care of deploying the application.
+
+    \textbf{imageregistry} specifies the endpoint of the artifact repository.
+    By default, images are fetched from \gls{docker_hub}.
+    For legacy deployments, the artifacts need to be fetched from another registry.
+
+    As legacy deployments are not used to deploy containers, the container specification cannot reference an image on \gls{docker_hub}.
+    Instead, the image given is derived from the defined image registry based on the annotated artifact type (Fig.~\ref{lst:image_spec}).
+
+    \subfile{impl-manifest-lst-artifact}
+
+    \subsubsection{Environment support labels}
+
+    To indicate support for execution environments, I use labels for legacy, \glsdisp{public_cloud}{public} and \gls{private_cloud}.
+    Additionally, I use another label to logically group processes (Fig.~\ref{lst:meta_labels}).
+
+    \textbf{cloud-env-*} indicates if the manifest is describing an artifact that is meant to be running on a \glsdisp{public_cloud}{public} or \gls{private_cloud} environment.
+    The label is suffixed with the cluster context it should target and a value of \verb|supported| makes it eligible to run in that environment.
+    In my case, the labels are expanded to \verb|cloud-env-minikube| for \gls{private_cloud} and \verb|cloud-env-bsc-aks| for \gls{public_cloud}.
+
+    \textbf{cloud-legacy} indicates if the manifest is describing an artifact that is meant to be running in the legacy environment.
+    A value of \verb|supported| indicates that this manifest is designed for the legacy deployment process.
+
+    \textbf{cloud-group} indicates which logical group of services an application belongs to.
+    All applications within a group must follow the same deployment strategy.
+
+    \subfile{impl-manifest-lst-label}
+
+    \subsubsection{Hybrid cloud policies}
+
+    Policies are created as \acrfullpl{crd}.
+    \acrshortpl{crd} are a way to extend the \gls{kubernetes} cluster \acrshort{api} using \acrshort{api} aggregation.
+    They are available from version 1.16.0.
+    The outcome is a new kind of \gls{kubernetes} object that can be used with \gls{kubectl} and comes with almost all features available on standard \gls{kubernetes} objects.\cite{k8s_crd}
+
+    A \gls{cloud} policy expects a set of environment labels as part of its specification.
+    The default metadata section is populated with the group label, creating the group-to-policy association.
+    These labels correspond to the \gls{cloud} labels I defined as part of the concepts (Fig.~\ref{lst:cloud_policy}).
+
+    \subfile{impl-manifest-lst-policy}
+
+    Having a set of \gls{cloud} policies deployed to multiple clusters ensures high availability.
+    The policies can be loaded from one cluster, acting as the primary instance, while the other cluster serves as secondary, backup instance.
+    \Gls{cloud} policies can be retrieved from the cluster using \gls{kubectl} (Fig.~\ref{lst:kube_getcpol}).
+
+    \subfile{impl-manifest-lst-getcpol}
+
+\end{document}
+

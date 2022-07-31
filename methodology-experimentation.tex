@@ -1,0 +1,47 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+    To evaluate the performance of \gls{hybrid_cloud} deployments and demonstrate the capabilities of the concepts in regards to \gls{hybrid_cloud} management, a field experiment is conducted, following a direct and a phased method.
+    Prerequisite for the experiment is a running \gls{hybrid_cloud} environment, which includes:
+    \begin{itemize}
+        \setlength\itemsep{0em}
+        \item A \gls{kubernetes} cluster running in the \gls{public_cloud}
+        \item A \gls{kubernetes} cluster running in the \gls{private_cloud}
+        \item The \gls{deployer} component which has been implemented as part of this thesis
+        \item The \gls{legacyctld} agent which has been implemented as part of this thesis
+        \item The \gls{git} metadata repository with the application manifests provided with this thesis
+        \item A local commit hook on the \gls{git} metadata repository that triggers the \gls{deployer}
+        \item The monitoring stack running in both \glspl{cloud} to gather the data necessary for the evaluation of the experiment
+    \end{itemize}
+    The setup is described in more detail as part of the next section about instrumentation.
+    The precise instructions and a recording of an experiment execution are provided as part of the thesis submission.
+
+    \subsubsection{Direct deployments}
+
+    The direct method is used to demonstrate the performance of the concepts as there is no further interaction required after persisting a change to the environment metadata repository.
+    In this method, a direct swap of the desired execution environment causes an immediate redeployment of processes.
+    The following steps are executed:
+    \begin{itemize}
+        \setlength\itemsep{0em}
+        \item Initial state: Set the \gls{cloud} policy for a specific \gls{cloud} group to run on the source \gls{cloud}
+        \item Direct swap: Once services are healthy, change the \gls{cloud} policy to run on the target \gls{cloud}
+    \end{itemize}
+
+    \subsubsection{Phased deployments}
+
+    The phased approach is used to demonstrate the deployment capabilities in scenarios where a direct approach is not feasible due to transactional state migrations and availability guarantees.
+    In this method, both execution environments are enabled in the first phase, followed by a change disabling the source execution environment.
+    The following steps are executed:
+    \begin{itemize}
+        \setlength\itemsep{0em}
+        \item Initial state: Set the \gls{cloud} policy for a specific \gls{cloud} group to run on the source \gls{cloud}
+        \item Phase 1: Once services are healthy, set the \gls{cloud} policy to run on both \glspl{cloud}
+        \item Phase 2: Once services are healthy, set the \gls{cloud} policy to run on the target \gls{cloud}
+    \end{itemize}
+
+    The performance and success of deployments is measured by the health of the deployed services.
+    A service is deemed healthy if it successfully responds to a health query issued against an endpoint that is specifically designed for that purpose.
+
+\end{document}
+

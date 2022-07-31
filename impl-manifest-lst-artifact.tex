@@ -1,0 +1,20 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+    \begin{figure}[h]
+        \begin{verbatim}
+            template:
+                spec:
+                    containers:
+                        - name: example
+                          image: example:1.0
+        \end{verbatim}
+        \captionsetup{justification=centering}
+        \caption{
+            Container specification from a \gls{kubernetes} deployment used with legacy artifacts.
+        In this case the container image type is derived from the 'legacy/type' annotation.
+        }
+        \label{lst:image_spec}
+    \end{figure}
+\end{document}
+

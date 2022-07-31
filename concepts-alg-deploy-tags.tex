@@ -1,0 +1,38 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+    % requires to be H aligned for references to work properly
+    \begin{algorithm}[H]
+        % for algorithms keep label and caption on the top for referencing to work properly
+        \label{alg:deploy_tags}
+        \caption{
+            Deployment algorithm based on tags where for each label the applications are deployed to the respective execution environment.
+        }
+        \KwData{\acrshort{k8s} object repository}
+        \KwResult{deployment event status}
+        init\;
+        \ForEach{\acrshort{k8s} objects in repository}{
+            get labels from object\;
+            \uIf{private label}{
+                apply to private \acrshort{k8s} cluster\;
+            }
+            \Else{
+                delete from private \acrshort{k8s} cluster\;
+            }
+            \uIf{public label}{
+                apply to public \acrshort{k8s} cluster\;
+            }
+            \Else{
+                delete from public \acrshort{k8s} cluster\;
+            }
+            \uIf{legacy label}{
+                apply to legacy stack\;
+            }
+            \Else{
+                delete from legacy stack\;
+            }
+        }
+        % add newline before caption
+        ~\\
+    \end{algorithm}
+\end{document}

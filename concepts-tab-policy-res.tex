@@ -1,0 +1,22 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{ll}
+            \toprule
+            \textbf{resolution} & \textbf{new valid decision options} \\ \midrule
+            $u\land r$  & none, public, private, either-or, both \\ \midrule
+            $u\land l$ & legacy \\ \midrule
+            $r\land l$ & - \\ \midrule
+            $u\land r\land l$ & either-or-or, all \\
+            \bottomrule
+        \end{tabular}
+        \captionsetup{justification=centering}
+        \caption{
+            Set of valid decision options that can be taken on each deployment based on the execution environment resolution.
+        }
+        \label{tab:policy_resolutions}
+    \end{table}
+\end{document}
+

@@ -1,0 +1,23 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+    \begin{figure}[h]
+        \begin{verbatim}
+            template:
+                metadata:
+                    labels:
+                        app: example
+                    annotations:
+                        legacy/v: "1"
+                        legacy/type: "zip"
+                        legacy/host: "http://127.0.0.1:3556"
+                        imageregistry: "http://localhost:3555"
+        \end{verbatim}
+        \captionsetup{justification=centering}
+        \caption{
+            Model of a \gls{kubernetes} manifest with extended annotations for legacy deployments.
+        }
+        \label{lst:template_meta}
+    \end{figure}
+\end{document}
+

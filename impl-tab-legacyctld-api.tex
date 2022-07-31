@@ -1,0 +1,21 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{p{10cm}}
+            \midrule
+            \verb|GET /health|: indicates the health of this instance \\ \midrule
+            \verb|GET /processes|: shows all processes \\ \midrule
+            \verb|POST /processes|: starts a new process, takes a deployment manifest with legacy extension as data input \\ \midrule
+            \verb|GET /processes/{name}|: shows a process by name, name has to match the deployment manifest  \\ \midrule
+            \verb|DELETE /processes/{name}|: deletes a process by name, name has to match the deployment manifest \\ \midrule
+        \end{tabular}
+        \captionsetup{justification=centering}
+        \caption{
+            short \acrshort{rest} \acrshort{api} documentation of \gls{legacyctld} endpoints
+        }
+        \label{tab:legacyctld_api}
+    \end{table}
+\end{document}
+

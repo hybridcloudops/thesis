@@ -1,0 +1,137 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+    With \gls{kubernetes} being a fundamental part of the \gls{hybrid_cloud} setup, I want to describe all applications and resources with \gls{kubernetes} manifests.
+    For big enterprises undergoing digital transformation, having a pure \gls{hybrid_cloud} environment is rarely the case to begin with.
+    More realistically, a legacy \acrshort{it} stack is handling a significant fraction of the workload and still requires deployments for updates and patching.
+    Therefore, a solution is required to handle deployments to the \gls{hybrid_cloud} and the legacy stack in a standard fashion.
+
+    \subsubsection{GitOps workflow}
+
+    \subfile{concepts-pipeline}
+
+    \subsubsection{Support for legacy deployments}
+
+    Legacy applications are a challenge as containerizing and running them as ephemeral units is often not feasible.
+    A re-architecture into \gls{cloud_native} microservices would be a sensible approach from a technical perspective but this might not always be realistic due to economical factors.
+    Although this is a prerequisite to run those applications on \gls{kubernetes}, I still want to follow a similar approach for deployments to on-premise servers where the legacy stack is running on.
+    Given that \gls{kubernetes} manifests are just information declared in files using a standard format, their use is not necessarily limited to \gls{kubernetes}.
+    Therefore, the existing manifests are extended and used as a basis for the legacy deployments.
+
+    To capture all the fields required to perform a deployment, annotations are used (Fig.~\ref{fig:annotations_metamodel}).
+    Annotations provide arbitrary metadata about the artifact that is not used for identification, but to provide additional information.\cite{k8_api_annotations}
+
+    \subfile{concepts-fig-meta-annotations}
+
+    Analogous to \gls{kubernetes} that offers a control mechanism through \gls{kubectl}, I am using a command line interface for legacy deployments that talks to an agent running on the respective target host as a daemon process.
+    The manifests are then used to run the applications via the agents (Fig.~\ref{fig:depl_legacy}).
+    The target host could be a virtual machine or a physical server.
+    The agent acts as a gateway for deploying, starting and stopping applications and runs a service registry to keep track of all managed processes.
+    Target hosts are expected to be fully operational already.
+    Therefore, it does not require any infrastructure provisioning facilities.
+    The only purpose is to streamline and unify the deployment process by integrating the existing application landscape.
+
+    \subfile{concepts-fig-deploy-legacy}
+
+    Migrating existing legacy applications to follow a new deployment model will require some initial effort, which is an overhead.
+    In contrast, the advantage of this approach is a more standardised application landscape that allows for a less error-prone process due to consistent conventions.
+    The learning curve for engineers that are not familiar with the applications is less steep and maintenance will become much more efficient and effective.
+    In addition, the migration process can be viewed as a first phase of migrating to the \gls{cloud}.
+    Dependencies should be captured already in the manifest files to allow the use of containers and eventual adoption of \gls{kubernetes} at a later stage.
+
+    \subsubsection{Environment support model}
+
+    The use of legacy manifests in combination with the \gls{hybrid_cloud} setup results in three distinct execution environments.
+    For effective scheduling during the execution of the \gls{gitops} pipeline, a way to associate and allocate resources is required.
+
+    An application might only support the \gls{public_cloud} environment due to the integration of provider-specific products or infrastructure.
+    On the other hand, most stateless services should be able to run in any environment.
+    This results in a combination of possible resolutions of support models.
+    Resolution sets are formed from all combinations of \gls{public_cloud} $u$, \gls{private_cloud} $r$ and legacy $l$, which results in \gls{hybrid_cloud} $u\land r$, any combination of \gls{cloud} and legacy $u\land l, r\land l$ and the combination of all cases $u\land r\land l$ (Table~\ref{tab:tag_resolution_sets}).
+
+    \subfile{concepts-tab-tag-res}
+
+    An option to associate applications would be to maintain a repository per execution environment.
+    However, with this solution it is not possible to monitor a single repository for state changes anymore.
+    Also, moving files between repositories does not allow for a clear, auditable history.
+    More importantly, a transaction mechanism over all repositories would be required, as it is not otherwise possible to perform a relocation of services between execution environments atomically.
+    To illustrate this, imagine a service has to move from the \gls{public_cloud} to the \gls{private_cloud}.
+    With \gls{gitops}, the deployment workflow will be triggered once the state change is persisted.
+    In this scenario, it would take two separate state changes, triggering two separate deployments.
+    Without synchronisation, atomicity cannot be guaranteed and the outcome may not be as expected, as any deployment may fail in the process.
+
+    A support model based on tags provides a flexible way to manage resources.
+    By using tags, all manifests can live in a single repository and applications can be organized in groups representing responsibilities or business capabilities, instead of being segregated based on execution environments.
+    Also, all state is collocated, resulting in a single source of truth.
+    An application can express its need to run on the legacy stack using a specific tag.
+    Likewise, at tag is used for \glsdisp{public_cloud}{public} and \gls{private_cloud} support, respectively.
+    If an application uses a \gls{public_cloud} service, it needs to be tagged for \gls{public_cloud} only.
+    If an application is stateless and self-contained, it can have both the \glsdisp{public_cloud}{public} and \gls{private_cloud} tags.
+
+    To express this, labels on \gls{kubernetes} objects are used that identify which \gls{cloud} environments are supported (Fig.~\ref{fig:labels_metamodel}).
+    Labels are intended to be used as metadata to describe and identify objects.
+    They should be meaningful to the the user and can be used to query objects and group them into sets.\cite{k8_api_labels}
+
+    \subfile{concepts-fig-meta-labels}
+
+    During the deployment workflow, the deployment algorithm then decides how to schedule applications effectively, based on all available \gls{kubernetes} objects and the tags they have assigned (Algorithm~\ref{alg:deploy_tags}).
+
+    ~\\
+    \subfile{concepts-alg-deploy-tags}
+
+    \subsubsection{Policy-driven scheduling}
+
+    While tags express the support model of an application, they do not capture the desired location of execution very well.
+    Tags, as per my definition, operate on an application-level.
+    To keep concerns separated, I want to use a different instrument to drive deployment decisions on an organisation-level.
+    Encoding the information about what is supported and what is resolved in a single value limits the flexibility a \gls{hybrid_cloud} environment has to offer.
+    By introducing deployment policies, deployment decisions can be deferred to a later stage of the workflow.
+
+    Policies provide an extensible framework that supports the incorporation of any kind of information for decision making, vertical to the technical capabilities.
+    A few possible verticals include regulations, economical or strategic decisions and heuristics.
+    Regulations may require application placement in \glspl{private_cloud} for data confidentiality reasons to be compliant with laws.
+    Companies may have a \gls{cloud} strategy driven on \acrshort{cto} level that dictates a desired percentage of \gls{public_cloud} use, or sets a maximum to limit dependence.
+    Policies could also implement a heuristic approach to place applications based on information about the execution environments, to make decisions geared towards pricing, performance, latency or network load, using \acrshort{ai} in the process.
+    To be able to make relevant decisions, models would have to be developed that operate on a curated knowledge base for \gls{cloud} service pricing and time series data of relevant operations metrics, gathered over a period of time.
+
+    Within the scope of this work, I only evaluate the aspect of application placement based on static labels for \gls{cloud} environments, explicitly managed by the user.
+    Tags declare the options, policies decide how to make use of them.
+    The deployment pipeline evaluates those factors and executes accordingly (Fig.~\ref{fig:pipeline_policies}).
+
+    \subfile{concepts-fig-deploy-polices}
+
+    Based on the resolution sets computed in table~\ref{tab:tag_resolution_sets}, a set of valid decision options arise that have to be evaluated on each deployment.
+    The options are: not deploying, deploying to a single environment if applicable with the option of falling back to another environment, or deploying to multiple environments.
+    The complexity grows with the number of possible resolutions (Table~\ref{tab:policy_resolutions}).
+
+    \subfile{concepts-tab-policy-res}
+
+    For the sake of simplicity, I assume that the legacy execution environment is never a preferred destination for deployments.
+    In other words, if a resource supports \gls{cloud} and legacy, \gls{cloud} will always take precedence.
+    That way, legacy components are migrated to a \gls{cloud} execution environment as soon as it is supported, without the need of additional policies.
+    Therefore, any resolution that takes into account the legacy stack can be excluded from the list, namely public-legacy, private-legacy and public-private-legacy combinations.
+
+    Based on those types, policies can be developed and associated with applications.
+    \gls{kubernetes} uses the concept of namespaces.
+    Although namespaces provide a way to build virtual clusters of applications, they are meant to be used to provide separation of concerns for multiple users such as tenants or teams.
+    For the level of separation I seek, labels are recommended in the \gls{kubernetes} documentation.
+    Therefore, another label is introduced for grouping of applications so that policies can be applied to groups instead of individual applications.\cite{k8s_namespaces}
+
+    The group label has to represent a logical set of applications that serve a particular purpose and follow the same deployment strategy and hence can be associated with a single policy.
+    Group labels can have an implicit structure expressing to the user the boundaries they apply.
+    As an example, a group of stateless services deployed across \glspl{cloud} might encode high availability in its name and by doing this, provide explicit documentation.
+
+    Putting it all together, a deployment policy associates a group of applications with a set of labels that represent desired execution environments (Fig.~\ref{fig:policies_metamodel}).
+
+    \subfile{concepts-fig-meta-policies}
+
+    With this information, the deployment algorithm (Algorithm~\ref{alg:deploy_tags}), which is based only on tags, can be extended to incorporate policies.
+    Given a set of deployments $D = \{ d_i | i \in \mathbb{N} , \text{for all manifests} \}$ with $D_u \cup D_r \cup D_l = D$, if $D_x \subseteq D$ is applied to any execution environment, or any combination of such, the inverse set $D_x'$ has to be deleted from the remaining execution environments to prevent inconsistencies between the desired state captured in the metadata repository and the state applied to the execution environments.
+    Deployment strategies have to be idempotent and keep the state unchanged if not applicable (Algorithm~\ref{alg:deploy_policies}).
+
+    ~\\
+    \subfile{concepts-alg-deploy-policies}
+
+\end{document}
+

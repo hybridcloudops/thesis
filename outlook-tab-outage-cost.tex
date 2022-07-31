@@ -1,0 +1,30 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{llll}
+            \toprule
+            \textbf{Business} & \textbf{Performance} & \textbf{Outage[hours]} & \textbf{Cost[USD]} \\
+            \midrule
+            \multirow{4}{*}{Standard}
+            & High(avg) & $<1$ & $<$ 300 000 \\
+            & Low(min) & 168 & 50,4 millions \\
+            & Low(avg) & 2604 & 792 millions \\
+            & Low(max) & 5040 & 1,5 billions \\
+            \midrule
+            \multirow{4}{*}{Finance}
+            & High(avg) & $<1$ & $<5$ millions \\
+            & Low(min) & 168 & 840 millions \\
+            & Low(avg) & 2604 & 13,02 billions \\
+            & Low(max) & 5040 & 25,2 billions \\
+            \bottomrule
+        \end{tabular}
+        \captionsetup{justification=centering}
+        \caption{
+            Time to restore service values for high- and low performers based on industry surveys conducted for the State of \gls{devops} Report 2019 and resulting outage cost estimates.\cite{state_of_devops_19,gartner_outage_cost,itic_outage_cost}
+        }
+        \label{tab:outage_cost}
+    \end{table}
+\end{document}
+

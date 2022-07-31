@@ -1,0 +1,25 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+    \begin{figure}[h]
+        \begin{verbatim}
+            apiVersion: bsc.anliksim/v1
+            kind: CloudPolicy
+            metadata:
+                name: rest-hybrid-policy
+                namespace: tenant-a
+                labels:
+                    cloud-group: rest-hybrid
+            spec:
+                labels:
+                - cloud-env-minikube
+                - cloud-env-bsc-aks
+        \end{verbatim}
+        \captionsetup{justification=centering}
+        \caption{
+            \Gls{cloud} policy associating the rest-hybrid group with the \glsdisp{public_cloud}{public} and \gls{private_cloud} environment.
+        }
+        \label{lst:cloud_policy}
+    \end{figure}
+\end{document}
+

@@ -1,0 +1,26 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{llllp{3cm}}
+            \toprule
+            \textbf{public $u$} & \textbf{private $r$} & \textbf{legacy $l$} & \textbf{$|R|$} &\textbf{resolution set $R$} \\ \midrule
+            n & n & n & $2^0$ & $\emptyset$ \\ \midrule
+            y & n & n & $2^1$ & $\{\emptyset,u\}$ \\ \midrule
+            n & y & n & $2^1$ & $\{\emptyset,r\}$ \\ \midrule
+            n & n & y & $2^1$ & $\{\emptyset,l\}$ \\ \midrule
+            y & y & n & $2^2$ & $\{\emptyset,u,r,u\land r\}$ \\ \midrule
+            y & n & y & $2^2$ & $\{\emptyset,u,l,u\land l\}$ \\ \midrule
+            n & y & y & $2^2$ & $\{\emptyset,r,l,r\land l\}$ \\ \midrule
+            y & y & y & $2^3$ & $\{\emptyset,u,r,l,u\land r,u\land l,r\land l,u\land r\land l\}$ \\
+            \bottomrule
+        \end{tabular}
+        \captionsetup{justification=centering}
+        \caption{
+            Possible resolutions based on tags for \gls{public_cloud}, \gls{private_cloud} and legacy.
+        }
+        \label{tab:tag_resolution_sets}
+    \end{table}
+\end{document}
+

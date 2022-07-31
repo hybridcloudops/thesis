@@ -1,0 +1,26 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+    The experimentation with \gls{hybrid_cloud} deployments is performed once with the direct method and once with the phased method, moving services from one \gls{cloud} environment to the other in both directions.
+
+    In direct experiments, the service availability was given with at least one replica but the configured replica count is not guaranteed as the current deployment workflow does not enforce it (Fig.~\ref{fig:res_deploy_direct}a-b).
+    For slow-starting, transactional processes this approach could result in temporary downtime.
+
+    \subfile{results-fig-deploy-direct}
+
+    With the phased method, replica count can be guaranteed by waiting for the new replicas to be live before triggering the second deployment (Fig.~\ref{fig:res_deploy_phased}a-b).
+
+    \subfile{results-fig-deploy-phased}
+
+    In both cases, scheduling times are not consistent between runs, as effective scheduling depends on \gls{kubernetes} internals.
+    Executions of the deployment workflow are highlighted in Fig.~\ref{fig:res_deploy_direct} and Fig.~\ref{fig:res_deploy_phased}, respectively.
+    The time between a deployment and a change in the service health metrics is accounted for by the scrape interval of \gls{prometheus} and the internal scheduling of the \gls{kubernetes} cluster.
+
+    Deployment performance from the time a deployment is registered to when services are back to full health, based on the recorded measurements, range from 47 to 55 seconds for the direct method where no human interaction is required and from 132 to 162 seconds for the phased method.
+    The deployment time for the phased method depends on the manual process of triggering the second phase.
+    Effective performance results of an operational deployment pipeline greatly depends on the amount and nature of underlying services.
+    Given experiments are based on a simple \acrshort{http}-based service created for demonstration purposes.
+
+\end{document}
+

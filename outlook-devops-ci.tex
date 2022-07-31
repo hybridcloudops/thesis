@@ -1,0 +1,38 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+    \glsdisp{ci}{Continuous integration} is key to efficiently build functional, stable software.
+    \Gls{trunk_dev} is the development workflow that has been acknowledged to promote \acrshort{ci}/\acrshort{cd} and \gls{devops}.
+    \gls{gitops} works well with \gls{trunk_dev}, but to make proper use of it, a \acrshort{ci} strategy has to be developed.
+    In the scope of large enterprises, a development workflow has to scale well.
+    For \gls{trunk_dev}, this means using short-lived feature branches with pull-requests to the master branch (Fig.~\ref{fig:git_branching_master}).
+    On pull-requests, a pre-integration step and a code review is required to assure the quality of a change.
+    Taking the largest \gls{git} repository as reference, this would have to scale up to 2500 pull-requests a day.\cite{trunk_based_dev,largest_git_repo}.
+
+    \subfile{outlook-fig-git-branch-master}
+
+    For this process to be automated, a \acrshort{ci} pipeline has to be put in place that tests the changes and feeds back to the pull-requests.
+    Testing in this case is rather complex as it targets multiple execution environments.
+    Traditionally, testing environments are set up and used to perform integration testing in an automated fashion but also manually by developers and testers.
+    The problem with this approach is that it can become a bottleneck, inconsistencies can develop resulting in environment disparity and it comes with an additional maintenance overhead.
+    To avoid this, testing environments should be available on-demand and scale based on the current needs (Fig.~\ref{fig:tes_env_scaled}).
+
+    \subfile{outlook-fig-test-env-scale}
+
+    Starting up a few containers is cheap, but provisioning a full \gls{hybrid_cloud} environment for every testing cycle can become expensive and slow down the integration process.
+    The environment could be reduced to one single-node cluster, along the lines of \gls{minikube}, but that would not reflect the real complexity of the system, which is especially problematic when working with highly distributed systems.
+    To solve this problem, a virtual environment is built and provisioned in a single container, that reflects the real complexity and can be used for \acrshort{ci} as well as local development.
+    This can be achieved by running a local \gls{kubernetes} cluster using \gls{docker} containers as nodes with \gls{kind}, a tool initially designed for testing \gls{kubernetes} itself\cite{kind_k8s_in_docker}, in combination with \gls{mininet} to create the underlying virtual network\cite{mininet}, to provide a realistic \gls{hybrid_cloud} setup.
+    All of this then runs in a single container and can be bootstrapped, on-demand, with metadata from the environment repository (Fig.~\ref{fig:tes_env_container}).
+
+    \subfile{outlook-fig-test-env-container}
+
+    The \acrshort{ci} pipeline for testing can run on the \gls{public_cloud}, making full use of the pay-as-you-go model.
+    That way, \gls{private_cloud} requirements can be reduced to a minimum, as no additional hardware is required to provision test environments.
+
+    Once a change has passed through the \acrshort{ci} pipeline, it can be promoted to the staging environment.
+    At this stage, \acrlong{cd} should take the change to production systems.
+
+\end{document}
+

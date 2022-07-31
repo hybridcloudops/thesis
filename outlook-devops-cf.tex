@@ -1,0 +1,29 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+    Every change is an opportunity to learn for software developers, system administrators and product managers, if sufficient information is provided about the behaviour of the system and their users.
+    Unlike most \acrlong{sdlc} processes, \gls{devops} is visualized as a loop, transitioning from monitoring to planning as part of \gls{cont_feed}.
+    It is important to acknowledge and promote continuous learning and experimentation, a core principle of \gls{devops}, as part of the lifecycle.
+    With the knowledge of how the systems behave and how the clients use them, more educated decisions can be made that drive the development of products.
+    To gain that knowledge, the relevant data has to be gathered and made broadly accessible.
+
+    This includes data from all \gls{devops} stages and not only metrics from the execution environments.
+    Quality metrics from static code analysis and security vulnerability scanning should come from the \acrlong{ci} process.
+    The overall lead time, deployment lead time, change frequency and change failure rates can be tracked as part of the development process.
+    Runtime monitoring and incident management should provide \acrlong{mtta} an incident, \glsdisp{mttrc}{mean time to recover} from it, \acrlong{mttrs} a problem, \acrlong{mttf} and \glsdisp{mtbf}{between failures} and \acrlong{mdt}.
+    To estimate the profitability, revenue, return of investment of changes and \acrlong{tco}, combining \gls{cap_ex} and \gls{op_ex}, should be calculated.
+    More challenging to track but equally important is employee happiness and satisfaction.
+    Combining all metrics into a knowledge base enables data-driven \gls{cont_feed}.
+
+    By including all the feedback, planning can be effective.
+    For development to be equally effective, the stability of production systems has to be ensured.
+    Developers having to track down production issues kills productivity and motivation.
+    The current operational status of the systems has to be visible at any point in time, notifying proactively about potential problems.
+    The standard with \gls{kubernetes} is to use liveliness and readiness probes.
+    This requires applications to expose health endpoints that provide a detailed picture of the current state of runtime dependencies.
+    With real-time monitoring of those endpoints in combination with log processing, making accurate predictions and raising alerts on irregularities is possible.
+    Altogether, this forms the \gls{hybrid_cloud_ops} dashboard, which provides access to all the information.
+
+\end{document}
+

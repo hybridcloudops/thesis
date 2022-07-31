@@ -1,0 +1,25 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+    \begin{figure}[h]
+        \begin{equation}
+            \label{eq:recovery_cost}
+            \begin{split}
+                recovery\ cost[USD] =& \acrshort{mttrc} [min] * \frac{avg.\ outage\ cost[USD]}{min}
+            \end{split}
+        \end{equation}
+        \begin{equation}
+            \label{eq:bug_fix_cost}
+            \begin{split}
+                bug\ fix\ cost[USD] =& (\acrshort{mttrs} [min] - \acrshort{mttrc} [min]) * \frac{avg.\ development\ cost[USD]}{min}
+            \end{split}
+        \end{equation}
+        \begin{equation}
+            \label{eq:outage_cost}
+            \begin{split}
+                outage\ cost[USD] =& recovery\ cost[USD] + bug\ fix\ cost[USD]
+            \end{split}
+        \end{equation}
+    \end{figure}
+\end{document}
+

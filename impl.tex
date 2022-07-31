@@ -1,0 +1,34 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+    This section shows the implementation of the concepts applied to a reference \gls{hybrid_cloud} model.
+    It serves as an evaluation of the concepts on a technical level and as instrumentation for computing the result.
+
+    \subsection{Environment architecture}
+    \label{subsec:impl-env}
+
+    \subfile{impl-env}
+
+    \subsection{Kubernetes API extension}
+    \label{subsec:impl-manifest}
+
+    \subfile{impl-manifest}
+
+    \subsection{GitOps workflow}
+    \label{subsec:impl-pipe}
+
+    \subfile{impl-workflow}
+
+    \subsection{Measurements}
+    \label{subsec:impl-instr}
+
+    In order to be able to gather data when running experimentations, metrics are scraped from the running processes by an instance of \gls{prometheus} running in each \gls{kubernetes} cluster.
+    The data is then queried and aggregated in \gls{grafana}, which only runs in the \gls{minikube} cluster.
+    Each deployment is registered in \gls{prometheus} via the \gls{pushgateway} running in the \gls{minikube} cluster.
+    The \glsdisp{pushgateway}{Pushgateway} enables short running processes to report data, as \gls{prometheus} works by scraping data on a configured interval (Fig.~\ref{fig:impl_instr}).
+
+    \subfile{impl-fig-instr}
+
+\end{document}
+

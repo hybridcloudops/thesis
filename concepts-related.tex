@@ -1,0 +1,62 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+    In this section, work related to the concepts developed as part of this thesis is listed.
+    The two main fields of work are deployment tags and policies for management of \gls{cloud} resources and integration of legacy applications into the deployment workflow.
+
+    \subsubsection{Deployment tags and policies}
+
+    In 2012, Javadi et al.
+    have been working on policy-based provisioning of resources in the presence of application failures in \gls{hybrid_cloud} environments.
+    Their work is conducted on a specific research platform running on virtual machines, while my work aims at container orchestration using a readily available platform.
+    Furthermore, the proposed policies are concerned with the workload distribution in failure scenarios and do not serve as a tool to drive \gls{hybrid_cloud} deployments.\cite{rc_prov_policy_failures}
+
+    In 2013, Desair et al.
+    have been developing a middleware for heterogeneous \gls{hybrid_cloud} platforms that dynamically decides where to execute requests based on policies.
+    While the proposed policy concepts are similar, the work is concerned with \gls{java}-based \acrshort{paas} platforms and the choice of \acrshort{paas} platform within the \gls{hybrid_cloud}.\cite{policy_driven_hc_mw}
+
+    In 2018, Spillner and López have been working on transactional migration of inhomogeneous composite \gls{cloud} applications for \gls{openshift} and \gls{kubernetes} application models.
+    The paper proposes a strategy for a migration tool that includes migrations between \gls{kubernetes} clusters, which has been implemented on the basis of \gls{openshift} in 2019.
+    While my work does not consider transactional migrations, it provides a way to migrate applications between two \gls{kubernetes} clusters using policy-driven deployments.\cite{rw_migr_cloud_apps,openshifter}
+
+    In the same year, Wei and Rodriguez proposed a policy based application deployment in \gls{hybrid_cloud} environments for controlling data location.
+    The work is based on \acrshort{aws} and \gls{openstack} with \gls{kubernetes} being planned as a platform for future work.
+    Their policy model is concerned with rules for security and data location, which are evaluated by a policy engine to determine the deployment domain, while my policy model cedes the control to the user.\cite{policy_hc_deploy}
+
+    Also in 2018, Janarthanan et al.
+    have evaluated policy based container migration strategies on a \gls{multi_cloud} environment using \gls{docker} containers.
+    The work uses virtual machines on \acrshort{aws} and \glsdisp{microsoft_cloud}{Azure} as a basis for their container deployments and provides policies for container placement and resource restrictions similar to the affinity and resource policies provided by \gls{kubernetes}.
+    Their work is mainly concerned with the migration of containers between \glspl{public_cloud} while my work targets \gls{hybrid_cloud} management with an integrated deployment workflow.\cite{policy_mc_migr}
+
+    In 2019, Serhiienko et al.
+    introduced an extensible tag management middleware based on \glsdisp{function_aas}{cloud functions} for declarative resource management in a \gls{multi_cloud} environment.
+    The work shows the challenges of tagging \gls{cloud} resources on different \gls{cloud} providers and builds a framework that better supports tag-based, \gls{cross_cloud} resource management, while my work focuses on \gls{hybrid_cloud} management using \gls{kubernetes}, which provides a standard \acrshort{api} for tagging of resources.\cite{rw_ext_decl_mgmt}
+
+    In summary, using tags and policies for \gls{hybrid_cloud} or \gls{multi_cloud} management is not a new concept.
+    However, none of the work so far has been making use of the \gls{kubernetes} platform and \acrshort{api} to provide a simple way of expressing the support model of an application and drive deployments in combination with policies, which are controlled by the user and operator of the platform as promoted by \gls{devops} principles.
+
+    \subsubsection{Legacy deployment integration}
+
+    HashiCorp provides a solution for the orchestration of non-\gls{cloud_native} applications with \gls{nomad}.
+    \gls{nomad} is an open-source orchestration engine that supports containerized and non-containerized applications.
+    It aims to allow modernization of legacy applications without rewrite.
+    \gls{nomad} is still in beta as of March 2020 and many features are only supported on the paid enterprise plans.
+    On top of that, the product is naturally biased towards other HashiCorp products.\cite{hashicorp_nomad}
+
+    \glsdisp{microsoft_cloud}{Azure} Arc is a feature of \gls{microsoft_cloud} that aims to bring \glsdisp{microsoft_cloud}{Azure} services and management to any infrastructure.
+    It is still in preview as of May 2020.
+    It offers resource control via the \glsdisp{microsoft_cloud}{Azure} portal but also supports \gls{gitops}-style declarative configuration management.
+    The product is not open-source and only aimed at \glsdisp{microsoft_cloud}{Azure} and therefore creates a vendor-lockin.\cite{azure_arc,azure_arc_announce}
+
+    Clossplane is an open-source \gls{kubernetes} add-on that allows to define own infrastructure resources and deploy them as \acrlongpl{crd} in any \gls{kubernetes} cluster.
+    It allows to declare and manage legacy resources comparable to my work but does not provide an integrated deployment workflow and process management.
+    In contrast to my work, it does provide a way to easily expose legacy resources within a \gls{kubernetes} cluster.\cite{crossplane_overview}
+
+    There is plenty of research on how to migrate legacy applications to different \gls{cloud} models, using modern deployment techniques.
+    However, this is not the case for integrating legacy stacks with a modern deployment process without any re-architecture of the applications.
+    I believe that this is a niche market, which will see an increase in interest while large enterprises are undergoing digital transformation.
+    Therefore, my work tries to further generalize application management of non-\gls{cloud_native}, legacy applications by reusing existing, established tools used for \gls{cloud_native} applications based on free and open-source technologies.
+
+\end{document}
+

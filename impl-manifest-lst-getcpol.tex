@@ -1,0 +1,18 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+    \begin{figure}[h]
+        \begin{verbatim}
+            $ kubectl get cloudpolicies -A
+            NAMESPACE    NAME                      AGE
+            monitoring   monitoring-group-policy   7d7h
+            tenant-a     rest-hybrid-policy        7d5h
+        \end{verbatim}
+        \captionsetup{justification=centering}
+        \caption{
+            \Gls{cloud} policies deployed to one of the \gls{kubernetes} clusters.
+        }
+        \label{lst:kube_getcpol}
+    \end{figure}
+\end{document}
+

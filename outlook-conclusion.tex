@@ -1,0 +1,98 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+    The conclusion is drawn from the results based on \acrlongpl{kpi} and further remarks are made based on the assessment feedback.
+
+    \subsubsection{Applicability of concepts}
+
+    The assessment with a small expert group has resulted in an overall positive rating of the applicability of the concepts.
+    Every participant would consider using \gls{hybrid_cloud} deployments and a majority of participants would do so in combination with the integration for legacy applications, if required.
+    This provides an initial proof of concept.
+
+    \Gls{hybrid_cloud} deployments using a support model based on tagging in combination with policies has been viewed as a simple and effective solution to the presented problem.
+    Realistically, this concept on its own is not enough to cover the full release process and it is also not designed for that.
+    As part of the assessment, it has been highlighted that real-world deployments can be more complex.
+    An important note to make is that the deployment of processes also depends on the design of the application.
+    The concept of \gls{hybrid_cloud} deployments is an attempt to build a generic solution for \gls{hybrid_cloud} management and does not take application-specific requirements into account.
+    However, together with the support model based on tags, it builds a framework that can be extended to capture additional needs.
+    The concepts have been used and proven useful as part of the instrumentation of this thesis, to selectively deploy the monitoring stack for taking measurements.
+
+    Integration of legacy applications into the same workflow using \gls{kubernetes} manifests has been seen as a useful concept, with a few exceptions.
+    The main topic of controversy has been the additional effort of adopting the solution versus spending time on the re-architecture and the migration to the \gls{cloud}.
+    Also, onboarding of new solutions in large enterprises can be a bureaucratic process.
+    For small businesses, this is not an applicable concept, as they often do not maintain a large legacy stack.
+    For large enterprises, migrating to a modern architecture should certainly be preferred.
+    However, this is not always feasible, economically or technically.
+    As an example, some financial institutions have low latency requirements which they have built dedicated infrastructure for.
+    The cost of maintaining such an infrastructure is very high but might be part of the business model.
+    Migrating the applications built for that infrastructure to commodity hardware is not an option.
+    Even if a \gls{cloud} provider offers an equivalent alternative, a return of investment is highly improbable.
+
+    Ideally, everything would run on a single \gls{hybrid_cloud} environment.
+    More realistically, there will always be a legacy stack.
+    With Microsoft and HashiCorp offering products for management of non-cloud, on-premise applications and infrastructure in combination with their \gls{cloud} stack, there is likely a market for legacy integration.
+
+    \subsubsection{Evaluation of performance indicators}
+
+    The deployment workflow has demonstrated a good performance, which is also related to the use of \gls{gitops} as a basis for the workflow.
+    With a deployment time of 55 seconds, as seen in the experimentation with the direct method, a daily deployment frequency of 1570 could be reached.
+    This is already above the yearly deployment frequency of high performers in the industry and also allows to reach a deployment lead time of less than a day (Table~\ref{tab:state_devops}).
+    The numbers compete with values from elite performers like Amazon, Google and Netflix, that run thousands of deployments a day aggregated over all their services.\cite{state_of_devops_19}
+
+    \subfile{outlook-tab-devops-state}
+
+    Although top performance is a prerequisite for adoption, it is not a unique selling proposition as many alternatives already exist.
+    More relevance can be attributed to incident management in terms of failure recovery performance.
+
+    Looking at past events, failure to operate has caused enterprises significant economic loss.
+    A 12 hour outage costs Apple 25 million in 2015, a five hour outage costs Delta Airlines 150 million USD in 2016 and a 14 hour outage costs facebook 90 million USD in 2019\cite{atlassian_cost_downtime}.
+    Running software in the \gls{cloud} does not prevent such events from happening.
+    In 2015, an outage of \acrshort{aws} lasted for five hours\cite{cna_patterns}.
+    For \glsdisp{microsoft_cloud}{Azure}, outages have been reported in May 2019 for two hours\cite{azure_out_may_19}, January 2019 for 16 hours\cite{azure_out_jan_19}, November 2018 for 17 hours\cite{azure_out_nov_18} and even for more than a day in September 2018\cite{azure_out_sept_18}.
+
+    While building failure tolerant and stable applications to minimize incidents should be the primary goal, outages cannot be fully avoided.
+    In such cases, falling back to an alternative \gls{cloud} using \gls{hybrid_cloud} deployments with \gls{cloud} policies could save a business.
+    Experimentation with the phased method demonstrated zero-downtime deployments within 162 seconds.
+    For services matching the complexity of the experiment and that can be restored by spinning up a new instance, this would allow a standard business to restore a service with an estimated outage cost of USD 13 500.
+    For a large enterprise in the finance industry it would add up to USD 225 000.
+    Compared to industry values, the results compete with the high performance group (Table~\ref{tab:outage_cost}).
+
+    \subfile{outlook-tab-outage-cost}
+
+    In order to be able to calculate realistic values for the actual benefit gained based on the formulas for \acrlongpl{kpi}, the probability that an outage occurs and a bug is fixed and the probability that a change request is implemented have to be factored in.
+    In an operational organisation, the number of severe outages should be minimal.
+    Therefore, the outage probability should be relatively low in comparison to the change probability.
+    This puts the impact of the outage cost into perspective.~\eqref{eq:actual_cost}
+
+    \subfile{outlook-eq-cost}
+
+    \subsubsection{Relevance for the IT industry}
+
+    \Gls{hybrid_cloud} has gained a lot of popularity and will likely become the default operating model in large enterprises.
+    As a result, the demand will grow not only for pure \gls{hybrid_cloud} management, but for solutions that focus on the full software estate a company needs to operate.
+    However, to be relevant for the industry, further work is required to extend the current concepts to fulfill all acceptance criteria of a deployment and release process in a regulated enterprise environment.
+
+    \subsubsection{Relevance for research}
+
+    Optimal placement of applications based on various factors is an ongoing area of research.
+    More and more work is done based on container orchestration platforms such a \gls{kubernetes}.
+    This work may be used as a basis for research conducted on placement and migration of \gls{kubernetes}-based solutions.
+
+    \subsubsection{Review of the problem statement}
+
+    The goal of this thesis was to develop a \gls{hybrid_cloud_ops} solution that enables the adoption of a \gls{hybrid_cloud} model, following a \gls{devops} approach.
+    As part of the work, the target environment was extended to incorporate the legacy \acrshort{it} stack, making it even more hybrid.
+    The presented solution sets the basis for hybrid continuous deployments while working with the given hybrid setup.
+    The stages of packaging and releasing are the link between build and operate, between Dev and Ops.
+    By providing a unified solution for working with a hybrid environment, the inhibition threshold of adopting a cloud solution is reduced and all parties can work with known processes and principles.
+
+    Due to the background of the author, this work was mainly driven by lessons and experiences from the banking business.
+    In an organisation with thousands of employees, the biggest challenges are communication and culture.
+    However, technical burdens are consuming a lot of time and hinder the culture to thrive.
+    Regulatory work, reporting, audit requirements and security measures contribute to the problem.
+    Those barriers have to be cut through.
+    It is such an environment that can profit the most from the presented solutions, taking it as a basis for streamlining \acrshort{it} processes, allowing the firm to focus on contributing actual value to the economy and society.
+
+\end{document}
+

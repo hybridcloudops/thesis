@@ -1,0 +1,36 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+    The current support tags and policy models are designed to solve a single problem only.
+    Therefore, they do not come with any extended functionality for application placement.
+    With the introduction of \acrshort{ci}/\acrshort{cd} as part of the future work, a fully operational pipeline is provided.
+    To extend the unique selling proposition of the product, more complex models may be developed as an extension to the current solution.
+    For possible extensions, policies for both static placement and dynamic workload orchestration are in scope.
+
+    Static placement is the approach taken with the current implementation of cloud policies.
+    Previous research has suggested that the placement of services based on location is a requirement for enterprises\cite{policy_hc_deploy}.
+    Therefore, creating a location policy on top of the existing cloud policy would be a valuable extension.
+    The tag support model can be extended with a location tag, used for applications where restrictions apply.
+    A location policy can then be used to associate a tag value with an execution environment, for instance a public cloud cluster running in a specific location.
+
+    Adding a new policy type adds a new dimension to the resolution logic.
+    With multiple, overlapping policies, a deterministic reduction algorithm is required.
+    For this to work, wildcards have to be introduced for cloud policies in combination with naming conventions.
+    The existing bsc-aks environment might be extended to bsc-aks-zurich and bsc-aks-useast.
+    While the cloud policy would still specify bsc-aks as the target environment, a location policy for Switzerland would limit all applications tagged for that location to run on bsc-aks-zurich.
+
+    A disadvantage of multiple dimensions is the reduced visibility of the desired state.
+    A possible solution to this problem would be to provide a way to reduce policies on-demand, presenting the user with the output of the reduction.
+    Further, the output, representing the desired state, can be added to version control to add back the visibility, which would otherwise be indistinct.
+
+    For dynamic workload orchestration, data-driven policy models may be developed to optimize scheduling for pricing or performance.
+    Looking at the case of pricing, a knowledge base for cloud service pricing could be used that is initiated with the estimated cost and updated continuously based on billing information.
+    This might be best supported when working with a multi cloud setup, where there is competition between multiple public cloud providers in terms of pricing.
+    It might not always be desirable to reschedule applications automatically, just to achieve minor cost savings.
+    Therefore, dynamic orchestration would need to operate on certain thresholds, which could be implemented with soft policies.
+    In contrast, policies for static placements would be hard policies, to make sure that constraints can be applied.
+    By using soft and hard policies, the metadata repository still holds the desired state represented in our execution environments, with the added tolerance for deviations introduced by the soft policies, allowing for automatic optimizations.
+
+\end{document}
+

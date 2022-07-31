@@ -1,0 +1,26 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+    \begin{figure}[h]
+        \begin{equation}
+            \label{eq:deployment_cost}
+            \begin{split}
+                deployment\ cost[USD] =& avg.\ time[min] * frequency * \frac{avg.\ deployment\ cost[USD]}{min}
+            \end{split}
+        \end{equation}
+        \begin{equation}
+            \label{eq:development_cost}
+            \begin{split}
+                development\ cost[USD] =& lead\ time[min] * \frac{avg.\ developer\ cost[USD]}{min}
+            \end{split}
+        \end{equation}
+        \begin{equation}
+            \label{eq:change_cost}
+            \begin{split}
+                change\ cost[USD] =& development\ cost[USD] \\
+                +& deployment\ cost[USD] * (1 + failure\ rate)
+            \end{split}
+        \end{equation}
+    \end{figure}
+\end{document}
+

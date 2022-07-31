@@ -1,0 +1,20 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{p{10cm}}
+            \midrule
+            \verb|GET /health|: indicates the health of this instance \\ \midrule
+            \verb|GET /deployments|: shows all deployments \\ \midrule
+            \verb|POST /deployments|: starts a new deployment, takes a \gls{git} revision and a manifest directory as data input \\ \midrule
+            \verb|DELETE /deployments|: starts the cleanup that tears down all deployments, takes a \gls{git} revision and a manifest directory as data input \\ \midrule
+        \end{tabular}
+        \captionsetup{justification=centering}
+        \caption{
+            short \acrshort{rest} \acrshort{api} documentation of \gls{deployer} endpoints
+        }
+        \label{tab:deployer_api}
+    \end{table}
+\end{document}
+

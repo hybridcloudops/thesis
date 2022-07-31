@@ -1,0 +1,410 @@
+%% Glossary
+\newglossaryentry{cloud}{
+    name=cloud,
+    description={
+        is an abstraction of common \acrshort{it} infrastructure including computing, storage and network\cite{cloud_def_nist}
+    }}
+\newglossaryentry{cloud_computing}{
+    name=cloud computing,
+    description={
+        is the computing paradigm that promotes the use of \gls{cloud} deployment and service models
+    }}
+\newglossaryentry{devops}{
+    name=DevOps,
+    description={
+        is a set of tools and practices that aims to bring development and operations closer together and enables companies to promote the right culture and increase the efficiency of their \acrfull{sdlc}.\cite{cn_devops_with_k8s_c1,devops_surveys}
+    }}
+\newglossaryentry{itil}{
+    name=ITIL,
+    description={
+        is a set of management practices that define the \acrfull{sdlc} and \gls{it} operations (see \url{https://www.itlibrary.org})
+    }}
+\newglossaryentry{public_cloud}{
+    name=public cloud,
+    description={
+        describes \gls{cloud} services offered to the general public.
+        Major public cloud providers are \gls{amazon_cloud}, \gls{microsoft_cloud} and \gls{google_cloud}\cite{cloud_def_nist}
+    }}
+\newglossaryentry{community_cloud}{
+    name=community cloud,
+    description={
+        are multiple \glspl{private_cloud} shared within a community\cite{cloud_def_nist}
+    }}
+\newglossaryentry{private_cloud}{
+    name=private cloud,
+    description={
+        is everything that adheres to the definition of \gls{cloud} and is privately held by a company or a person\cite{cloud_def_nist}
+    }}
+\newglossaryentry{hybrid_cloud}{
+    name=hybrid cloud,
+    description={
+        is a combination of \gls{public_cloud} and \gls{private_cloud}\cite{cloud_def_nist}
+    }}
+\newglossaryentry{multi_cloud}{
+    name=multi cloud,
+    description={
+        describes the usage of multiple \glspl{public_cloud}
+    }}
+\newglossaryentry{edge_cloud}{
+    name=edge cloud,
+    description={
+        describes the usage of edge devices as cloud environment
+    }}
+\newglossaryentry{cross_cloud}{
+    name=cross-cloud,
+    description={
+        describes that something operates across different \glspl{cloud}
+    }}
+\newglossaryentry{kubernetes}{
+    name=Kubernetes,
+    description={
+        is an open-source container orchestration engine originating from Google.
+        It provides a platform to build distributed systems including services for load balancing, service discovery, health checks, configuration management, storage orchestration, deployments and rollbacks\cite{k8s_what_is}
+    }}
+\newglossaryentry{amazon_cloud}{
+    name=Amazon Web Services,
+    description={
+        is Amazon's \gls{public_cloud} platform (see \url{https://aws.amazon.com/})
+    }}
+\newglossaryentry{google_cloud}{
+    name=Google Cloud Platform,
+    description={
+        is Google's \gls{public_cloud} platform (see \url{https://cloud.google.com/})
+    }}
+\newglossaryentry{microsoft_cloud}{
+    name=Microsoft Azure,
+    description={
+        is Microsoft's \gls{public_cloud} platform (see \url{https://azure.microsoft.com/})
+    }}
+\newglossaryentry{scrum}{
+    name=Scrum,
+    description={
+        is an agile software development methodology contrasting waterfall management approaches (see \url{https://scrummethodology.com/})
+    }}
+\newglossaryentry{hybrid_cloud_ops}{
+    name=HybridCloudOps,
+    description={
+        is a model for \gls{devops} and \gls{hybrid_cloud} which is developed as part of this thesis
+    }}
+\newglossaryentry{infa_aas}{
+    name=infrastructure as a service,
+    description={
+        \acrfull{iaas} is the capability of provisioning infrastructure including computing, storage and network\cite{cloud_def_nist,cloud_def_nist_eval}
+    }}
+\newglossaryentry{platform_aas}{
+    name=platform as a service,
+    description={
+        (\acrshort{paas}) is the capability of deploying applications using various languages, libraries and services provided without having to manage the underlying infrastructure\cite{cloud_def_nist,cloud_def_nist_eval}
+    }}
+\newglossaryentry{function_aas}{
+    name=function as a service,
+    description={
+        \acrfull{faas} is the capability of running code functions without having to manage the application runtime which is also referred to as serverless computing\cite{faas_status}
+    }}
+\newglossaryentry{service_aas}{
+    name=software as a service,
+    description={
+        \acrfull{saas} is the capability of using and configuring software without having to manage the applications or infrastructure used to provision it\cite{cloud_def_nist,cloud_def_nist_eval}
+    }}
+\newglossaryentry{java}{
+    name=Java,
+    description={
+        is an object-oriented, cross-platform programming language (see \url{https://www.java.com})
+    }}
+\newglossaryentry{cloud_native}{
+    name=cloud-native,
+    description={
+        is a design principle for building failure tolerant, redundant, adaptive and dynamically scalable applications that can cope with changes in the underlying infrastructure\cite{cna_patterns,cn_devops_with_k8s_c1}
+    }}
+\newglossaryentry{legacy}{
+    name=legacy,
+    description={
+        made for the cloud
+    }}
+\newglossaryentry{site_rel_eng}{
+    name=site reliability engineering,
+    description={
+        (\acrshort{sre}) is a discipline that has a lot in common with \gls{devops} principles.
+        The general idea is that software engineers are given operations tasks\cite{sre_google}
+    }}
+\newglossaryentry{devsecops}{
+    name=DevSecOps,
+    description={
+        is \gls{devops} extended to the field of security engineering and aims to avoid leaks and increase transparency as part of the process\cite{devsecops}
+    }}
+\newglossaryentry{bizdevops}{
+    name=BizDevOps,
+    description={
+        is \gls{devops} extended with business related practices as an attempt to bring \acrshort{it} and business closer together\cite{bizdevops}
+    }}
+\newglossaryentry{archops}{
+    name=ArchOps,
+    description={
+        is \gls{devops} with the focus on analysis and design on an architectural level with feedback from automated monitoring\cite{archops}
+    }}
+\newglossaryentry{winops}{
+    name=WinOps,
+    description={
+        is \gls{devops} from a Microsoft-centric perspective for integration with the Windows platform\cite{winops}
+    }}
+\newglossaryentry{testops}{
+    name=TestOps,
+    description={
+        is an attempt to port \gls{devops} principles onto hardware manufacturing and electronic design automation\cite{testops}
+    }}
+\newglossaryentry{dataops}{
+    name=DataOps,
+    description={
+        is a variation of DevOps focused around data science that is applied in the field of data engineering, data management and business intelligence\cite{dataops}
+    }}
+\newglossaryentry{aiops}{
+    name=AIOps,
+    description={
+        extends \gls{devops} with \acrfull{ai} for operations to learn based on the available data from monitoring\cite{aiops}
+    }}
+\newglossaryentry{noops}{
+    name=NoOps,
+    description={
+        is the concept of fully replacing \acrfull{it} operations with automated processes and platform services\cite{noops}
+    }}
+\newglossaryentry{cont_int}{
+    name=continuous integration,
+    description={
+        is the process of continuously integrating and verifying changes made to software (see Fig.~\ref{fig:devops_loop} for reference)
+    }}
+\newglossaryentry{cont_del}{
+    name=continuous delivery,
+    description={
+        is a continuous form of software delivery, mostly through \acrfull{ci}, \acrfull{cd} and \gls{cont_feed} in the context of \gls{devops}
+    }}
+\newglossaryentry{cont_depl}{
+    name=continuous deployment,
+    description={
+        is the process of continuously deploying software into production systems once the integrity has been verified, usually through \acrfull{ci} (see Fig.~\ref{fig:devops_loop} for reference)
+    }}
+\newglossaryentry{cont_feed}{
+    name=continuous feedback,
+    description={
+        is the process of continuously feeding back information to drive planning, incorporating learnings from previous cycles of building and operating software (see Fig.~\ref{fig:devops_loop} for reference)
+    }}
+\newglossaryentry{openshift}{
+    name=OpenShift,
+    description={
+        is a \acrfull{paas} solution from RedHat based on \gls{kubernetes} (see \url{https://www.openshift.com/})
+    }}
+\newglossaryentry{openstack}{
+    name=OpenStack,
+    description={
+        is software to build \glsdisp{private_cloud}{private} and \glspl{public_cloud} (see \url{https://www.openstack.org/})
+    }}
+\newglossaryentry{cloudfoundry}{
+    name=CloudFoundry,
+    description={
+        is a \acrfull{paas} solution for all types of \glspl{cloud} (see \url{https://www.cloudfoundry.org/})
+    }}
+\newglossaryentry{github}{
+    name=GitHub,
+    description={
+        is a software hosting platform based on \gls{git} (see \url{https://github.com/})
+    }}
+\newglossaryentry{uos}{
+    name=UOS,
+    description={
+        is a blockchain protocol translating social and economic actions into reputation (see \url{https://uos.network/})
+    }}
+\newglossaryentry{gitops}{
+    name=GitOps,
+    description={
+        is a workflow for versioned \acrfull{ci} and \acrfull{cd} on top of declarative infrastructure, which is stored in \gls{git}\cite{gitops}
+    }}
+\newglossaryentry{git}{
+    name=Git,
+    description={
+        is a distributed version control system (see \url{https://git-scm.com/})
+    }}
+\newglossaryentry{kubectl}{
+    name=kubectl,
+    description={
+        is a command line interface for the interaction with \gls{kubernetes} clusters (see \url{https://kubernetes.io/docs/reference/kubectl/})
+    }}
+\newglossaryentry{total_cost}{
+    name=total cost of ownership,
+    description={
+        (\acrshort{tco}) is a metric that expresses the total cost of owning and operating an \acrshort{it} organisation.
+        It consists of \acrfull{capex} and \acrfull{opex}
+    }}
+\newglossaryentry{svc_lvl_agreement}{
+    name=service level agreement,
+    description={
+        (\acrshort{sla}) is a form of contract, an agreement, that is made between two parties offering and using \acrshort{it} services
+    }}
+\newglossaryentry{docker}{
+    name=Docker,
+    description={
+        is a software company and product for building containers, usually referred to as Docker containers (see \url{https://www.docker.com/})
+    }}
+\newglossaryentry{docker_hub}{
+    name=Docker Hub,
+    description={
+        is a hosted image registry for \gls{docker} containers (see \url{https://hub.docker.com/})
+    }}
+\newglossaryentry{prometheus}{
+    name=Prometheus,
+    description={
+        is an open-source time-series database for metrics collection and visualization (see \url{https://prometheus.io/})
+    }}
+\newglossaryentry{pushgateway}{
+    name=Prometheus Pushgateway,
+    description={
+        is a gateway to \gls{prometheus} for short-lived processes.
+        It offers an \acrshort{api} to push metrics so that \gls{prometheus} can collect them within the usual scrape-interval (see \url{https://prometheus.io/docs/practices/pushing/})
+    }}
+\newglossaryentry{grafana}{
+    name=Grafana,
+    description={
+        is a metrics visualization tool that makes it easy to build dashboards for monitoring in combination with a time-series database like \gls{prometheus} (see \url{https://grafana.com/})
+    }}
+\newglossaryentry{minikube}{
+    name=minikube,
+    description={
+        is a \gls{kubernetes} distribution optimized for local use.
+        It runs a single-node cluster on top of a virtual machine provisioned through a virtualization driver\cite{k8s_dist_minikube}
+    }}
+\newglossaryentry{legacyctld}{
+    name=legacyctld,
+    description={
+        is a server component that manages legacy resources and deployments that has been designed and implemented as part of this thesis
+    }}
+\newglossaryentry{legacyctl}{
+    name=legacyctl,
+    description={
+        is a command line interface for \gls{legacyctld} that has been designed and implemented as part of this thesis.
+        It can be seen as the equivalent of \gls{kubectl} in the context of \gls{kubernetes}
+    }}
+\newglossaryentry{deployer}{
+    name=deployer,
+    description={
+        is a server component providing a deployment workflow that has been designed and implemented as part of this thesis.
+        It handles deployments to \gls{kubernetes} and \gls{legacyctld} using \gls{kubectl} and \gls{legacyctl}
+    }}
+\newglossaryentry{cust_res_def}{
+    name=custom resource definition,
+    description={
+        is a way to describe a custom \gls{kubernetes} resource.
+        They are used to extend the \gls{kubernetes} \acrshort{api}\cite{k8s_crd}
+    }}
+\newglossaryentry{terraform}{
+    name=Terraform,
+    description={
+        is an infrastructure as code tool from HashiCorp (see \url{https://www.terraform.io/})
+    }}
+\newglossaryentry{k_virt_machine}{
+    name=kernel-based virtual machine,
+    description={
+        (\acrshort{kvm}) is a linux kernel module for full virtualization on x86 hardware (see \url{https://www.linux-kvm.org/})
+    }}
+\newglossaryentry{puppet}{
+    name=Puppet,
+    description={
+        is a product for infrastructure configuration management (see \url{https://puppet.com/})
+    }}
+\newglossaryentry{ansible}{
+    name=Ansible,
+    description={
+        is a product for infrastructure configuration management and application deployment (see \url{https://www.ansible.com/})
+    }}
+\newglossaryentry{kustomize}{
+    name=kustomize,
+    description={
+        is a product for native configuration management for \gls{kubernetes} (see \url{https://kustomize.io/})
+    }}
+\newglossaryentry{canary_depl}{
+    name=canary deployment,
+    description={
+        or canary release is a deployment technique where a change is rolled out gradually to production systems, only receiving reduced traffic initially.
+        If no issues are encountered, all the traffic will be routed to the new version, eventually
+    }}
+\newglossaryentry{auto_canary_anl}{
+    name=automated canary analysis,
+    description={
+        in an analysis technique for \glspl{canary_depl} where real-time metrics are compared between the current production version and the deployed canary version.
+        Switching over to the canary version is then automated based on acceptance criterias
+    }}
+\newglossaryentry{trunk_dev}{
+    name=trunk-based development,
+    description={
+        is a branching model for source-control where contribution are trunk-centric rather than being based on long-lived development branches\cite{trunk_based_dev}
+    }}
+\newglossaryentry{kind}{
+    name=kind,
+    description={
+        is a tool that has been designed for testing \gls{kubernetes}.
+        It offers a way to run a local multi-node cluster with \gls{docker} containers\cite{kind_k8s_in_docker}
+    }}
+\newglossaryentry{mininet}{
+    name=mininet,
+    description={
+        is a tool to create virtual networks on a single virtual or physical machine\cite{mininet}
+    }}
+\newglossaryentry{nomad}{
+    name=Nomad,
+    description={
+        is an open-source orchestration engine from HashiCorp that supports containerized and non-containerized applications\cite{hashicorp_nomad}
+    }}
+\newglossaryentry{google_trends}{
+    name=Google trends,
+    description={
+        show the relative demand of a given topic based on Google search results\cite{cloudtrend_world}
+    }}
+\newglossaryentry{cap_ex}{
+    name=capital expenditure,
+    description={
+        are expenses for fixed assets such as hardware and is  part of the \acrfull{tco}
+    }}
+\newglossaryentry{op_ex}{
+    name=operating expenditure,
+    description={
+        are expenses for ongoing work such as operating \acrfull{it} systems and is part of the \acrfull{tco}
+    }}
+\newglossaryentry{ns_and_cgroups}{
+    name=namespaces and cgroups,
+    description={
+        are linux kernel features that provide user isolation
+    }}
+
+%% Acronyms
+\newacronym{aws}{AWS}{\gls{amazon_cloud}}
+\newacronym{gcp}{GCP}{\gls{google_cloud}}
+\newacronym{ai}{AI}{artificial intelligence}
+\newacronym{api}{API}{application programming interface}
+\newacronym{rest}{REST}{representational state transfer}
+\newacronym{cto}{CTO}{chief technology officer}
+\newacronym{k8s}{K8s}{\Gls{kubernetes}}
+\newacronym{it}{IT}{information technology}
+\newacronym{sdlc}{SDLC}{software development lifecycle}
+\newacronym{ci}{CI}{\gls{cont_int}}
+\newacronym{cd}{CD}{\gls{cont_depl}}
+\newacronym{iaas}{IaaS}{\gls{infa_aas}}
+\newacronym{paas}{PaaS}{\gls{platform_aas}}
+\newacronym{faas}{FaaS}{\gls{function_aas}}
+\newacronym{saas}{SaaS}{\gls{service_aas}}
+\newacronym{sre}{SRE}{\gls{site_rel_eng}}
+\newacronym{aks}{AKS}{Azure \gls{kubernetes} Service}
+\newacronym{gke}{GKE}{Google \gls{kubernetes} Engine}
+\newacronym{eks}{EKS}{Elastic \gls{kubernetes} Service}
+\newacronym{http}{HTTP}{hypertext transfer protocol}
+\newacronym{kpi}{KPI}{key performance indicator}
+\newacronym{tco}{TCO}{\gls{total_cost}}
+\newacronym{capex}{CAPEX}{\gls{cap_ex}}
+\newacronym{opex}{OPEX}{\gls{op_ex}}
+\newacronym{sla}{SLA}{\gls{svc_lvl_agreement}}
+\newacronym{mttr}{MTTR}{mean time to restore}
+\newacronym{mttrc}{MTTRc}{mean time to recovery}
+\newacronym{mttrp}{MTTRp}{mean time to repair}
+\newacronym{mttrs}{MTTRs}{mean time to resolve}
+\newacronym{mtta}{MTTA}{mean time to acknowledge}
+\newacronym{mttf}{MTTF}{mean time to failure}
+\newacronym{mtbf}{MTBF}{mean time between failures}
+\newacronym{mdt}{MDT}{mean down time}
+\newacronym{crd}{CRD}{\gls{cust_res_def}}
+\newacronym{kvm}{KVM}{\gls{k_virt_machine}}
