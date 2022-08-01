@@ -41,13 +41,12 @@ texlive-publishers 2019.52538-1
 texlive-science 2019.52582-1
 ```
 
-To build now using docker (will make pdf available in `out/`)
+To build now use the [texenv](https://github.com/hybridcloudops/texenv) container.
+
+After building texenv, start from this directory with `./../texenv/run.sh` an build with:
 
 ```
-./build.sh
-./run.sh
 make build
-cp main.pdf /out
 exit
 ```
  
